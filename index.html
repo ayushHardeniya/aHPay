@@ -73,33 +73,6 @@ body {
   top: 20px;
 }
 
-/* Mode Toggle */
-.bright-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  color: #000;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1100;
-  transition: background 0.3s, color 0.3s;
-}
-.bright-mode-toggle:hover {
-  background: rgba(230, 230, 230, 0.9);
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: white;
-}
-body.bright-mode {
-  background-color: white;
-  color: black;
-}
-
 /* Tabs Styling */
 .tabs {
   display: flex;
@@ -333,7 +306,6 @@ body.bright-mode {
   <!-- Header & Floating Logo -->
   <div class="header"></div>
   <img src="image.png" alt="ayushHardeniya Logo" class="logo">
-  <button id="toggleMode">Dark Mode</button>
   
   <!-- Main Container -->
   <div class="container">
