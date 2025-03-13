@@ -26,7 +26,7 @@
       --footer-text: #5f6368;
       --hover-primary: #1669c1;      /* Darker blue on hover */
       --accent-color: #0f9d58;       /* Accent for interactive elements */
-      --navbar-bg: rgba(0, 0, 0, 0.7); /* Opaque navbar background */
+      --navbar-bg: rgba(0, 0, 0, 0.7); /* Opaque topbar background */
     }
     
     /* Global Reset & Base Styles */
@@ -52,9 +52,9 @@
     body.dark-mode .container,
     body.dark-mode .card {
       background: #1f1f1f;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
-    body.dark-mode .navbar {
+    body.dark-mode .topbar {
       background: rgba(0, 0, 0, 0.8);
     }
     body.dark-mode .toggle-mode {
@@ -80,57 +80,20 @@
       border-top: 1px solid #333;
     }
     
-    /* Header & Hero Section */
-    .header {
+    /* Topbar with Dark Mode Toggle */
+    .topbar {
       width: 100%;
-      height: 220px;
-      background: url('PayHeader.PNG') no-repeat center;
-      background-size: cover;
-      position: relative;
-    }
-    .header::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      /* Slight blue overlay for consistency */
-      background: rgba(26, 115, 232, 0.5);
-    }
-    
-    /* Opaque Navbar Overlay */
-    .navbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       background: var(--navbar-bg);
-      z-index: 2;
-    }
-    .brand {
+      padding: 10px 30px;
       display: flex;
+      justify-content: flex-end;
       align-items: center;
-    }
-    .brand img {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-    }
-    .brand h2 {
-      font-size: 1.8em;
-      color: #fff;
-      letter-spacing: 1px;
     }
     .toggle-mode {
       background: rgba(0, 0, 0, 0.2);
       border: none;
       color: #fff;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
@@ -138,6 +101,29 @@
     }
     .toggle-mode:hover {
       background: rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Header Banner Image */
+    .header {
+      width: 100%;
+      height: 220px;
+      background: url('PayHeader.PNG') no-repeat center;
+      background-size: cover;
+    }
+    
+    /* Introductory Description (Left Aligned) */
+    .intro {
+      text-align: left;
+      margin: 30px 20px;
+      font-size: 1.15em;
+      color: var(--text-color);
+    }
+    .intro p {
+      margin-bottom: 10px;
+    }
+    .intro p strong {
+      font-size: 1.2em;
+      font-weight: bold;
     }
     
     /* Main Container & Cards */
@@ -150,26 +136,14 @@
       background: var(--container-bg);
       padding: 20px 30px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 20px;
     }
     
-    /* Engaging Introductory Text */
-    .intro {
-      text-align: center;
-      margin: 30px 0 20px;
-      font-size: 1.15em;
-      color: var(--text-color);
-    }
-    /* Revised engaging description text */
-    .intro p {
-      margin-bottom: 10px;
-    }
-    
-    /* Payment Method Instruction (Concise) */
+    /* Payment Method Instruction (Concise, Left Aligned) */
     .instruction {
-      text-align: center;
-      margin: 10px 0 20px;
+      text-align: left;
+      margin: 10px 20px 20px;
       font-size: 1em;
       color: var(--text-color);
     }
@@ -261,11 +235,12 @@
       background: var(--hover-primary);
     }
     
-    /* Bank Details Section */
+    /* Bank Details Section (Slightly Larger Text) */
     .bank-details {
       display: flex;
       flex-direction: column;
       align-items: center;
+      font-size: 1.1em;
     }
     .bank-details .detail {
       display: flex;
@@ -296,7 +271,7 @@
       height: auto;
       border-radius: 6px;
       margin: 10px 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .download-btn {
       display: inline-block;
@@ -365,12 +340,9 @@
     
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .navbar {
+      .topbar {
         flex-direction: column;
-        align-items: flex-start;
-      }
-      .brand {
-        margin-bottom: 10px;
+        align-items: flex-end;
       }
       .tabs {
         flex-direction: column;
@@ -440,26 +412,22 @@
   </script>
 </head>
 <body>
-  <!-- Header & Opaque Navbar over Hero Image -->
-  <div class="header">
-    <div class="navbar">
-      <div class="brand">
-        <img src="image.png" alt="aHPay Logo">
-        <h2>aHPay</h2>
-      </div>
-      <button id="toggleMode" class="toggle-mode">Dark Mode</button>
-    </div>
+  <!-- Topbar with Dark Mode Toggle (Appears above the header image) -->
+  <div class="topbar">
+    <button id="toggleMode" class="toggle-mode">Dark Mode</button>
+  </div>
+  
+  <!-- Header Banner Image -->
+  <div class="header"></div>
+  
+  <!-- Introductory Description (Left Aligned) -->
+  <div class="intro">
+    <p><strong>aHPay</strong> is your dedicated and secure payment portal for transactions directed to <strong>Ayush Hardeniya (Ayush Sharma)</strong>. We process payments directly via UPI and bank transfers with no intermediaries—ensuring a fast, safe, and transparent experience.</p>
   </div>
   
   <!-- Main Container -->
   <div class="container">
-    <!-- Engaging Introductory Description -->
-    <div class="intro">
-      <p>Welcome to aHPay – your dedicated, secure payment portal for transactions directed to Ayush Hardeniya (Ayush Sharma).</p>
-      <p>Our platform processes payments directly via UPI and bank transfers, ensuring a fast, safe, and transparent experience without intermediaries.</p>
-    </div>
-    
-    <!-- Instruction for Payment Methods -->
+    <!-- Payment Method Instruction -->
     <div class="instruction">
       Please select your preferred payment method to proceed.
     </div>
@@ -552,19 +520,19 @@
     <!-- Extra Section: Why Choose aHPay? -->
     <div class="features">
       <h3>Why Choose aHPay?</h3>
-      <p>At aHPay, your security and satisfaction are our highest priorities. We combine cutting‑edge technology with a commitment to transparency, ensuring every transaction is smooth, secure, and instantaneous.</p>
+      <p>At <strong>aHPay</strong>, your security and satisfaction are our top priorities. Experience seamless, direct transactions powered by advanced encryption and a commitment to transparency.</p>
       <div class="feature-list">
         <div class="feature">
           <strong>100% Secure</strong>
-          <p>Your data is protected by industry-standard encryption and advanced security protocols.</p>
+          <p>Your data is safeguarded by industry-standard encryption and robust protocols.</p>
         </div>
         <div class="feature">
           <strong>Instant Processing</strong>
-          <p>Experience real‑time transactions with direct processing via UPI and bank transfers.</p>
+          <p>Enjoy real‑time, direct transactions without any intermediaries.</p>
         </div>
         <div class="feature">
-          <strong>No Intermediaries</strong>
-          <p>All payments are handled directly—ensuring transparency and efficiency.</p>
+          <strong>Transparent & Trustworthy</strong>
+          <p>Every payment is handled with integrity and clarity.</p>
         </div>
       </div>
     </div>
