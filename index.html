@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>aHPay - Professional Payment Gateway</title>
+  <title>aHPay - Secure Payment Gateway</title>
   
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="16x16" href="aHPayfav-16x16.png">
@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <style>
-    /* CSS Variables - Professional, corporate color scheme */
+    /* CSS Variables – Professional, corporate color scheme */
     :root {
       --primary-color: #1a73e8;   /* Corporate blue */
       --secondary-color: #4285f4;
@@ -25,6 +25,7 @@
       --footer-bg: #ffffff;
       --footer-text: #5f6368;
       --hover-primary: #1669c1;   /* Darker blue on hover */
+      --accent-color: #0f9d58;    /* Accent for interactive elements */
     }
     
     /* Basic Reset & Global Styles */
@@ -38,12 +39,13 @@
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
+      font-size: 16px;
     }
     
     /* Header with Background Image and Overlay */
     .header {
       width: 100%;
-      height: 200px;
+      height: 220px;
       background: url('PayHeader.PNG') no-repeat center;
       background-size: cover;
       position: relative;
@@ -96,7 +98,7 @@
       top: 10px;
     }
     
-    /* Main Container and Card Layout */
+    /* Main Container */
     .container {
       max-width: 1200px;
       margin: 20px auto;
@@ -104,51 +106,67 @@
     }
     .card {
       background: var(--container-bg);
-      padding: 20px;
+      padding: 20px 30px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
     }
     
-    /* Title & Subtitle */
-    .animated-title {
+    /* Brand: Inline Logo and Title */
+    .brand {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2em;
-      color: var(--primary-color);
       margin-bottom: 10px;
     }
-    .animated-title img {
-      width: 50px;
-      height: 50px;
+    .brand img {
+      width: 60px;
+      height: 60px;
       margin-right: 10px;
     }
-    .subtitle {
+    .brand h2 {
+      font-size: 2em;
+      color: var(--primary-color);
+    }
+    
+    /* Description before Payment Options */
+    .description {
       text-align: center;
-      font-size: 1.2em;
-      margin-bottom: 20px;
+      margin: 20px 0;
+      font-size: 1.1em;
       color: var(--text-color);
     }
     
-    /* Tabs Navigation */
+    /* Tabs Navigation for Payment Methods */
     .tabs {
       display: flex;
       justify-content: center;
-      border-bottom: 2px solid var(--primary-color);
+      gap: 10px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
     .tab {
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 16px;
+      flex: 1;
+      min-width: 150px;
+      background: var(--bg-color);
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
       font-weight: 600;
-      color: var(--text-color);
-      transition: background 0.3s ease;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .tab:hover {
+      background: var(--secondary-color);
+      color: #fff;
+      transform: translateY(-2px);
     }
     .tab.active {
-      border-bottom: 4px solid var(--primary-color);
-      color: var(--primary-color);
+      background: var(--primary-color);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     
     /* Section Contents */
@@ -171,16 +189,18 @@
       font-weight: bold;
       text-decoration: none;
       margin: 15px 0;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
     .button:hover {
       background: var(--hover-primary);
+      transform: scale(1.03);
     }
     
     /* UPI List Styling */
     .upi-list {
       list-style: none;
       margin-top: 15px;
+      padding: 0;
     }
     .upi-list li {
       display: flex;
@@ -220,7 +240,7 @@
       background: var(--bg-color);
       border-radius: 4px;
     }
-    .bank-details .detail span {
+    .bank-details .detail span:first-child {
       font-weight: 600;
       color: var(--primary-color);
     }
@@ -254,7 +274,38 @@
       background: var(--hover-primary);
     }
     
-    /* Footer (Normal Flow, Appears at End) */
+    /* Extra Interactive Section: Security & Features */
+    .features {
+      background: var(--container-bg);
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    .features h3 {
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    .features p {
+      margin-bottom: 10px;
+    }
+    .features .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .features .feature {
+      flex: 1 1 200px;
+      background: var(--bg-color);
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Footer (Normal Flow) */
     .footer {
       background: var(--footer-bg);
       color: var(--footer-text);
@@ -277,31 +328,24 @@
     
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .animated-title {
+      .brand {
         flex-direction: column;
-        font-size: 1.8em;
+      }
+      .brand img {
+        margin-bottom: 10px;
       }
       .tabs {
         flex-direction: column;
       }
       .tab {
-        padding: 10px;
-        font-size: 14px;
-      }
-      .bank-details .detail {
-        flex-direction: column;
-        text-align: center;
-      }
-      .bank-details .detail span,
-      .bank-details .value {
-        margin: 5px 0;
+        margin-bottom: 10px;
       }
       .button {
         padding: 10px 20px;
         font-size: 16px;
       }
       .header {
-        height: 150px;
+        height: 170px;
       }
       .toggle-mode {
         font-size: 12px;
@@ -368,7 +412,7 @@
   </script>
 </head>
 <body>
-  <!-- Header with Background Image & Toggle -->
+  <!-- Header with Background & Toggle -->
   <div class="header">
     <button id="toggleMode" class="toggle-mode">Dark Mode</button>
     <h1>Welcome to aHPay</h1>
@@ -380,13 +424,22 @@
   <!-- Main Container -->
   <div class="container">
     <div class="card">
-      <div class="animated-title">
+      <!-- Brand Section: Inline Logo and Title -->
+      <div class="brand">
         <img src="image.png" alt="aHPay Logo">
-        <span>aHPay</span>
+        <h2>aHPay</h2>
       </div>
-      <div class="subtitle">Powered By ayushHardeniya</div>
+      <p class="subtitle" style="text-align: center; margin-bottom: 20px; color: var(--text-color);">
+        Powered By ayushHardeniya
+      </p>
       
-      <!-- Tabs -->
+      <!-- Description before Payment Options -->
+      <p class="description">
+        Choose the payment method that best suits your transaction. Please select one of the options below:
+        UPI, QR Code, or Bank Transfer for a secure and seamless payment experience.
+      </p>
+      
+      <!-- Tabs for Payment Methods -->
       <div class="tabs">
         <div class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</div>
         <div class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code Payment</div>
@@ -396,7 +449,7 @@
       <!-- UPI Payment Section -->
       <div id="upi" class="content active">
         <h2>UPI Payment</h2>
-        <p>Click below to initiate a UPI transaction.</p>
+        <p>Click below to initiate a UPI transaction via your preferred UPI app.</p>
         <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
         <p>You may also copy any of the UPI IDs listed to use in your payment app.</p>
         <ul class="upi-list">
@@ -434,7 +487,8 @@
       <!-- QR Code Payment Section -->
       <div id="qr" class="content">
         <h2>QR Code Payment</h2>
-        <p>Scan the QR code below using any UPI app to complete your payment swiftly. You can also download the QR code image.</p>
+        <p>Scan the QR code below using any UPI app to complete your payment swiftly.
+           You can also download the QR code image for later use.</p>
         <div class="qr-section">
           <img src="GooglePayQR.png" alt="Google Pay QR Code">
           <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
@@ -466,6 +520,26 @@
             <span>Branch/Code:</span>
             <span class="value" id="branch" onclick="copyToClipboard('branch')">KHAIR (2387)</span>
           </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Extra Interactive Section: Security & Features -->
+    <div class="features">
+      <h3>Secure & Reliable Payment Solutions</h3>
+      <p>Your security is our top priority. Experience seamless transactions backed by state-of-the-art encryption and trusted protocols.</p>
+      <div class="feature-list">
+        <div class="feature">
+          <strong>100% Secure</strong>
+          <p>Your data is protected with advanced security measures.</p>
+        </div>
+        <div class="feature">
+          <strong>Instant Payments</strong>
+          <p>Enjoy quick and hassle-free transactions.</p>
+        </div>
+        <div class="feature">
+          <strong>Global Reach</strong>
+          <p>Trusted by users worldwide for secure payments.</p>
         </div>
       </div>
     </div>
