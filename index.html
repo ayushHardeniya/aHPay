@@ -210,6 +210,39 @@ body {
   background: #0056b3;
 }
 
+    /* Bank Details */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.bank-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.detail p {
+    margin: 0;
+}
+
+.detail p strong {
+    width: 200px; /* Adjust width as needed */
+    text-align: left;
+}
+
+.value {
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 10px; /* Space between label and value */
+}
+
+    
 /* Footer */
 .footer {
   text-align: center;
@@ -362,14 +395,29 @@ body {
       <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
       <br>
       <p>Use the following bank details to complete a direct bank transfer:</p>
-      <div class="bank-details">
-        <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
-        <p><strong>Bank Name:</strong> State Bank of India</p>
-        <p><strong>Account Number:</strong> 43246814954</p>
-        <p><strong>IFSC Code:</strong> SBIN0002387</p>
-        <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
-      </div>
-    </div>
+
+    <div class="bank-details">
+        <div class="detail">
+            <p><strong>Account Holder's Name:</strong></p>
+            <p class="value" onclick="copyToClipboard('Ayush Sharma')">Ayush Sharma</p>
+        </div>
+        <div class="detail">
+            <p><strong>Bank Name:</strong></p>
+            <p class="value" onclick="copyToClipboard('State Bank of India')">State Bank of India</p>
+        </div>
+        <div class="detail">
+            <p><strong>Account Number:</strong></p>
+            <p class="value" onclick="copyToClipboard('43246814954')">43246814954</p>
+        </div>
+        <div class="detail">
+            <p><strong>IFSC Code:</strong></p>
+            <p class="value" onclick="copyToClipboard('SBIN0002387')">SBIN0002387</p>
+        </div>
+        <div class="detail">
+            <p><strong>Branch/Code:</strong></p>
+            <p class="value" onclick="copyToClipboard('KHAIR (2387)')">KHAIR (2387)</p>
+        </div>
+    </div> 
   </div>
   
   <!-- Footer (at the bottom of page content) -->
