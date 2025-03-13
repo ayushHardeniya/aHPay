@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aHPay - Payment Gateway</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="aHPayfav-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="aHPayfav-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="aHPayfav-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="aHPayfav-512x512.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <style>
+    /* CSS Variables for Color Scheme */
+    :root {
+      --primary-color: #00ff99;
+      --secondary-color: #007bff;
+      --bg-dark: #1a1a1a;
+      --bg-light: #333333;
+      --text-color: #f0f0f0;
+      --footer-bg: #000;
+      --hover-secondary: #0056b3;
+    }
+    
+    /* Basic Reset & Fonts */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+      color: var(--text-color);
+      line-height: 1.6;
+      text-align: center;
+      padding: 10px;
+      transition: background 0.3s ease, color 0.3s ease;
+      padding-bottom: 100px; /* space for fixed footer */
+    }
+    
+    /* Header with Background Image */
+    .header {
+      width: 100%;
+      height: 250px;
+      background: url('PayHeader.PNG') no-repeat center;
+      background-size: cover;
+      position: relative;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    
+    /* Dark Mode Toggle Button (added element) */
+    .toggle-mode {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+    .toggle-mode:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Animated Title */
+    .animated-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5em;
+      color: var(--text-color);
+      text-shadow: 0 0 5px var(--primary-color);
+      animation: fadeSlide 1s ease-out;
+      margin-top: -30px;
+    }
+    .animated-title img {
+      width: 50px;
+      height: 50px;
+      margin-right: 12px;
+      filter: drop-shadow(0 0 5px var(--primary-color));
+      animation: fadeSlide 1s ease-out;
+    }
+    
+    /* Floating Logo */
+    .logo {
+      position: fixed;
+      top: -100px;
+      left: 30px;
+      width: 80px;
+      transition: top 0.3s ease;
+      z-index: 1000;
+    }
+    .logo.show {
+      top: 20px;
+    }
+    
+    /* Tabs Styling */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 25px auto;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 10px;
+      max-width: 600px;
+    }
+    .tab {
+      flex: 1;
+      padding: 12px 0;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .tab:hover {
+      background: rgba(0, 255, 153, 0.2);
+    }
+    .tab.active {
+      background: var(--primary-color);
+      color: #000;
+      box-shadow: 0 0 15px var(--primary-color);
+    }
+    
+    /* Section Contents */
+    .content {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+      text-align: center;
+      margin: 20px auto;
+      padding: 15px;
+      max-width: 800px;
+    }
+    .content.active {
+      display: block;
+    }
+    
+    /* Main Container */
+    .container {
+      max-width: 90%;
+      margin: 20px auto;
+      padding: 15px;
+    }
+    
+    /* Bank Details */
+    .bank-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bank-details .detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 400px;
+      justify-content: space-between;
+    }
+    .bank-details .detail p {
+      margin: 0;
+      font-size: 16px;
+    }
+    .bank-details .detail p strong {
+      color: var(--primary-color);
+      flex: 1;
+      text-align: left;
+    }
+    .bank-details .value {
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 10px;
+      flex: 1;
+      text-align: right;
+    }
+    
+    /* Payment Button */
+    .button {
+      display: inline-block;
+      background: var(--primary-color);
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary-color);
+    }
+    
+    /* UPI List */
+    .upi-list {
+      list-style: none;
+      margin-top: 15px;
+      padding: 0;
+    }
+    .upi-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      margin: 8px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+    }
+    .copy-btn {
+      background: var(--secondary-color);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .copy-btn:hover {
+      background: var(--hover-secondary);
+    }
+    
+    /* QR Section */
+    .qr-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .qr-section img {
+      width: 220px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,255,153,0.5);
+    }
+    .download-btn {
+      display: inline-block;
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background: var(--hover-secondary);
+    }
+    
+    /* Footer Fixed at Bottom */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--footer-bg);
+      color: #aaa;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+      z-index: 100;
+    }
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .animated-title {
+        font-size: 28px;
+        flex-direction: column;
+      }
+      .tabs {
+        flex-direction: column;
+      }
+      .tab {
+        font-size: 14px;
+        padding: 10px 0;
+      }
+      .button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      .bank-details .detail {
+        flex-direction: column;
+        text-align: center;
+      }
+      .bank-details .detail p, .bank-details .value {
+        text-align: center;
+        margin: 5px 0;
+      }
+    }
+  </style>
+
+  <script>
+    // Copy-to-Clipboard Functionality
+    function copyToClipboard(id) {
+      var element = document.getElementById(id);
+      if (element) {
+        var text = element.innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          alert('Copied: ' + text);
+        });
+      }
+    }
+    
+    // Floating Logo Behavior
+    window.addEventListener('scroll', function() {
+      var logo = document.querySelector('.logo');
+      if (window.scrollY > 180) {
+        logo.classList.add('show');
+      } else {
+        logo.classList.remove('show');
+      }
+    });
+    
+    // Tab Switching
+    function switchTab(tabName) {
+      var contents = document.querySelectorAll('.content');
+      contents.forEach(function(content) {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+      
+      var tabs = document.querySelectorAll('.tab');
+      tabs.forEach(function(tab) {
+        tab.classList.remove('active');
+      });
+      document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
+    }
+    
+    // Dark Mode Toggle
+    window.onload = function () {
+      var toggleButton = document.getElementById("toggleMode");
+      var body = document.body;
+      // Load saved mode
+      var savedMode = localStorage.getItem("mode");
+      if (savedMode) {
+        body.classList.add(savedMode);
+        toggleButton.textContent = savedMode === "dark-mode" ? "Bright Mode" : "Dark Mode";
+      }
+      toggleButton.addEventListener("click", function() {
+        if (body.classList.contains("dark-mode")) {
+          body.classList.remove("dark-mode");
+          body.classList.add("bright-mode");
+          localStorage.setItem("mode", "bright-mode");
+          toggleButton.textContent = "Dark Mode";
+        } else {
+          body.classList.remove("bright-mode");
+          body.classList.add("dark-mode");
+          localStorage.setItem("mode", "dark-mode");
+          toggleButton.textContent = "Bright Mode";
+        }
+      });
+    };
+  </script>
+</head>
+<body>
+  <!-- Header with Background & Toggle Button -->
+  <div class="header">
+    <button id="toggleMode" class="toggle-mode">Dark Mode</button>
+  </div>
+  
+  <!-- Floating Logo -->
+  <img src="image.png" alt="ayushHardeniya Logo" class="logo">
+  
+  <!-- Main Container -->
+  <div class="container">
+    <h1 class="animated-title">
+      || <img src="image.png" alt="aHPay Logo"> <span>aHPay</span> ||
+    </h1>
+    <h2>Powered By ayushHardeniya</h2>
+    <div style="height: 2px; background-color: var(--primary-color); width: 100%; margin: 20px 0;"></div>
+    <p class="description">Select your preferred payment method to complete your transaction securely and efficiently.</p>
+    
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</div>
+      <div class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code Payment</div>
+      <div class="tab" data-tab="bank" onclick="switchTab('bank')">Bank Transfer</div>
+    </div>
+    
+    <!-- UPI Payment Section -->
+    <div id="upi" class="content active">
+      <h2>UPI Payment</h2>
+      <p>Click below to initiate a UPI transaction.</p>
+      <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
+      <p>You may also copy any of the UPI IDs listed to use in your payment app.</p>
+      <ul class="upi-list">
+        <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
+        <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
+        <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
+        <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
+        <li><span id="upi5">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
+        <li><span id="upi6">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
+        <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
+      </ul>
+    </div>
+    
+    <!-- QR Code Payment Section -->
+    <div id="qr" class="content">
+      <h2>QR Code Payment</h2>
+      <p>Scan the QR code below using any UPI app to complete your payment swiftly. You can also download the QR code image.</p>
+      <div class="qr-section">
+        <img src="GooglePayQR.png" alt="Google Pay QR Code">
+        <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
+      </div>
+    </div>
+    
+    <!-- Bank Transfer Section -->
+    <div id="bank" class="content">
+      <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
+      <p>Use the following bank details to complete a direct bank transfer:</p>
+      <div class="bank-details">
+        <div class="detail">
+          <p><strong>Account Holder's Name:</strong></p>
+          <p id="accHolder" class="value" onclick="copyToClipboard('accHolder')">Ayush Sharma</p>
+        </div>
+        <div class="detail">
+          <p><strong>Bank Name:</strong></p>
+          <p id="bankName" class="value" onclick="copyToClipboard('bankName')">State Bank of India</p>
+        </div>
+        <div class="detail">
+          <p><strong>Account Number:</strong></p>
+          <p id="accNumber" class="value" onclick="copyToClipboard('accNumber')">43246814954</p>
+        </div>
+        <div class="detail">
+          <p><strong>IFSC Code:</strong></p>
+          <p id="ifsc" class="value" onclick="copyToClipboard('ifsc')">SBIN0002387</p>
+        </div>
+        <div class="detail">
+          <p><strong>Branch/Code:</strong></p>
+          <p id="branch" class="value" onclick="copyToClipboard('branch')">KHAIR (2387)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer Fixed at Bottom -->
+  <div class="footer">
+    <a href="https://ayushhardeniya.github.io/ayushHardeniya/">About Us</a> |
+    <a href="terms.html">Terms & Conditions</a> |  
+    <a href="contact.html">Contact Us</a>
+    <p>COPYRIGHT © 2025 | All Rights Reserved</p>
+    <p>| aHPay |</p>
+  </div>
+</body>
+</html>
