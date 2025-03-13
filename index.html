@@ -15,20 +15,21 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   
   <style>
-    /* CSS Variables – Professional, corporate color scheme */
+    /* CSS Variables – Professional Corporate Color Scheme */
     :root {
-      --primary-color: #1a73e8;   /* Corporate blue */
+      --primary-color: #1a73e8;      /* Corporate blue */
       --secondary-color: #4285f4;
-      --bg-color: #f1f3f4;        /* Light neutral background */
-      --container-bg: #ffffff;    /* White for cards/sections */
-      --text-color: #202124;      /* Dark, legible text */
+      --bg-color: #f1f3f4;           /* Light neutral background */
+      --container-bg: #ffffff;       /* White for cards/sections */
+      --text-color: #202124;         /* Dark text on light background */
       --footer-bg: #ffffff;
       --footer-text: #5f6368;
-      --hover-primary: #1669c1;   /* Darker blue on hover */
-      --accent-color: #0f9d58;    /* Accent for interactive elements */
+      --hover-primary: #1669c1;      /* Darker blue on hover */
+      --accent-color: #0f9d58;       /* Accent for interactive elements */
+      --navbar-bg: rgba(0, 0, 0, 0.7); /* Opaque navbar background */
     }
     
-    /* Basic Reset & Global Styles */
+    /* Global Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -51,10 +52,10 @@
     body.dark-mode .container,
     body.dark-mode .card {
       background: #1f1f1f;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     }
-    body.dark-mode .header::after {
-      background: rgba(26, 115, 232, 0.7);
+    body.dark-mode .navbar {
+      background: rgba(0, 0, 0, 0.8);
     }
     body.dark-mode .toggle-mode {
       background: rgba(255, 255, 255, 0.2);
@@ -65,7 +66,7 @@
       color: #e0e0e0;
     }
     body.dark-mode .tab.active {
-      background: #1a73e8;
+      background: var(--primary-color);
       color: #fff;
     }
     body.dark-mode .upi-list li,
@@ -79,7 +80,7 @@
       border-top: 1px solid #333;
     }
     
-    /* Header with Background Image & Navbar */
+    /* Header & Hero Section */
     .header {
       width: 100%;
       height: 220px;
@@ -94,8 +95,11 @@
       left: 0;
       width: 100%;
       height: 100%;
+      /* Slight blue overlay for consistency */
       background: rgba(26, 115, 232, 0.5);
     }
+    
+    /* Opaque Navbar Overlay */
     .navbar {
       position: absolute;
       top: 0;
@@ -105,6 +109,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background: var(--navbar-bg);
       z-index: 2;
     }
     .brand {
@@ -135,7 +140,7 @@
       background: rgba(0, 0, 0, 0.4);
     }
     
-    /* Main Container */
+    /* Main Container & Cards */
     .container {
       max-width: 1200px;
       margin: 20px auto;
@@ -149,15 +154,19 @@
       margin-bottom: 20px;
     }
     
-    /* Introduction Description */
+    /* Engaging Introductory Text */
     .intro {
       text-align: center;
-      margin: 20px 0;
-      font-size: 1.1em;
+      margin: 30px 0 20px;
+      font-size: 1.15em;
       color: var(--text-color);
     }
+    /* Revised engaging description text */
+    .intro p {
+      margin-bottom: 10px;
+    }
     
-    /* Instruction for Payment Methods */
+    /* Payment Method Instruction (Concise) */
     .instruction {
       text-align: center;
       margin: 10px 0 20px;
@@ -302,13 +311,13 @@
       background: var(--hover-primary);
     }
     
-    /* Extra Interactive Section: Security & Features */
+    /* Extra Section: Why Choose aHPay? */
     .features {
       background: var(--container-bg);
       padding: 20px 30px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin: 20px auto;
+      margin: 30px auto;
       max-width: 800px;
       text-align: center;
     }
@@ -431,7 +440,7 @@
   </script>
 </head>
 <body>
-  <!-- Header with Background Image & Navbar -->
+  <!-- Header & Opaque Navbar over Hero Image -->
   <div class="header">
     <div class="navbar">
       <div class="brand">
@@ -444,18 +453,19 @@
   
   <!-- Main Container -->
   <div class="container">
-    <!-- Introduction Description -->
-    <p class="intro">
-      aHPay is a secure payment gateway dedicated to facilitating direct transactions for Ayush Hardeniya (Ayush Sharma). Our platform processes payments directly via UPI and bank transfers without any intermediaries, ensuring a seamless and professional experience.
-    </p>
+    <!-- Engaging Introductory Description -->
+    <div class="intro">
+      <p>Welcome to aHPay – your dedicated, secure payment portal for transactions directed to Ayush Hardeniya (Ayush Sharma).</p>
+      <p>Our platform processes payments directly via UPI and bank transfers, ensuring a fast, safe, and transparent experience without intermediaries.</p>
+    </div>
     
     <!-- Instruction for Payment Methods -->
-    <p class="instruction">
+    <div class="instruction">
       Please select your preferred payment method to proceed.
-    </p>
+    </div>
     
     <div class="card">
-      <!-- Tabs for Payment Methods -->
+      <!-- Payment Method Tabs -->
       <div class="tabs">
         <div class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</div>
         <div class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code Payment</div>
@@ -539,22 +549,22 @@
       </div>
     </div>
     
-    <!-- Extra Interactive Section: Security & Features -->
+    <!-- Extra Section: Why Choose aHPay? -->
     <div class="features">
-      <h3>Secure & Reliable Payment Solutions</h3>
-      <p>Your security is our top priority. Experience seamless transactions backed by advanced encryption and trusted protocols.</p>
+      <h3>Why Choose aHPay?</h3>
+      <p>At aHPay, your security and satisfaction are our highest priorities. We combine cutting‑edge technology with a commitment to transparency, ensuring every transaction is smooth, secure, and instantaneous.</p>
       <div class="feature-list">
         <div class="feature">
           <strong>100% Secure</strong>
-          <p>Your data is protected by industry-standard security measures.</p>
+          <p>Your data is protected by industry-standard encryption and advanced security protocols.</p>
         </div>
         <div class="feature">
-          <strong>Instant Payments</strong>
-          <p>Direct, real-time processing for every transaction.</p>
+          <strong>Instant Processing</strong>
+          <p>Experience real‑time transactions with direct processing via UPI and bank transfers.</p>
         </div>
         <div class="feature">
-          <strong>Direct Transfers</strong>
-          <p>Payments are processed directly via UPI and bank transfers – with no intermediaries.</p>
+          <strong>No Intermediaries</strong>
+          <p>All payments are handled directly—ensuring transparency and efficiency.</p>
         </div>
       </div>
     </div>
@@ -563,7 +573,7 @@
   <!-- Footer (Normal Flow) -->
   <div class="footer">
     <a href="https://ayushhardeniya.github.io/ayushHardeniya/">About Us</a> |
-    <a href="terms.html">Terms & Conditions</a> |  
+    <a href="terms.html">Terms &amp; Conditions</a> |  
     <a href="contact.html">Contact Us</a>
     <p>COPYRIGHT © 2025 | All Rights Reserved</p>
     <p>| aHPay |</p>
