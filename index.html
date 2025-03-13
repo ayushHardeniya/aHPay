@@ -13,7 +13,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
+  
   <style>
     /* CSS Variables – Professional, corporate color scheme */
     :root {
@@ -40,18 +40,52 @@
       color: var(--text-color);
       line-height: 1.6;
       font-size: 16px;
+      transition: background 0.3s, color 0.3s;
     }
     
-    /* Header with Background Image and Overlay */
+    /* Dark Mode Overrides */
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+    body.dark-mode .container,
+    body.dark-mode .card {
+      background: #1f1f1f;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    body.dark-mode .header::after {
+      background: rgba(26, 115, 232, 0.7);
+    }
+    body.dark-mode .toggle-mode {
+      background: rgba(255, 255, 255, 0.2);
+      color: #e0e0e0;
+    }
+    body.dark-mode .tab {
+      background: #2c2c2c;
+      color: #e0e0e0;
+    }
+    body.dark-mode .tab.active {
+      background: #1a73e8;
+      color: #fff;
+    }
+    body.dark-mode .upi-list li,
+    body.dark-mode .bank-details .detail,
+    body.dark-mode .features .feature {
+      background: #2c2c2c;
+    }
+    body.dark-mode .footer {
+      background: #1f1f1f;
+      color: #aaa;
+      border-top: 1px solid #333;
+    }
+    
+    /* Header with Background Image & Navbar */
     .header {
       width: 100%;
       height: 220px;
       background: url('PayHeader.PNG') no-repeat center;
       background-size: cover;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .header::after {
       content: "";
@@ -62,40 +96,43 @@
       height: 100%;
       background: rgba(26, 115, 232, 0.5);
     }
-    .header h1 {
-      position: relative;
-      color: #fff;
-      z-index: 1;
-      font-size: 2em;
-      letter-spacing: 2px;
-    }
-    
-    /* Optional Dark Mode Toggle */
-    .toggle-mode {
+    .navbar {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+    .brand img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .brand h2 {
+      font-size: 1.8em;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .toggle-mode {
       background: rgba(0, 0, 0, 0.2);
       border: none;
       color: #fff;
       padding: 6px 10px;
       border-radius: 4px;
       cursor: pointer;
-      z-index: 2;
       font-size: 14px;
+      transition: background 0.3s;
     }
-    
-    /* Floating Logo */
-    .logo {
-      position: fixed;
-      top: -80px;
-      left: 20px;
-      width: 60px;
-      transition: top 0.3s ease;
-      z-index: 1000;
-    }
-    .logo.show {
-      top: 10px;
+    .toggle-mode:hover {
+      background: rgba(0, 0, 0, 0.4);
     }
     
     /* Main Container */
@@ -112,28 +149,19 @@
       margin-bottom: 20px;
     }
     
-    /* Brand: Inline Logo and Title */
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-    .brand img {
-      width: 60px;
-      height: 60px;
-      margin-right: 10px;
-    }
-    .brand h2 {
-      font-size: 2em;
-      color: var(--primary-color);
-    }
-    
-    /* Description before Payment Options */
-    .description {
+    /* Introduction Description */
+    .intro {
       text-align: center;
       margin: 20px 0;
       font-size: 1.1em;
+      color: var(--text-color);
+    }
+    
+    /* Instruction for Payment Methods */
+    .instruction {
+      text-align: center;
+      margin: 10px 0 20px;
+      font-size: 1em;
       color: var(--text-color);
     }
     
@@ -328,10 +356,11 @@
     
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .brand {
+      .navbar {
         flex-direction: column;
+        align-items: flex-start;
       }
-      .brand img {
+      .brand {
         margin-bottom: 10px;
       }
       .tabs {
@@ -363,16 +392,6 @@
       });
     }
     
-    // Floating Logo Behavior
-    window.addEventListener('scroll', function() {
-      var logo = document.querySelector('.logo');
-      if (window.scrollY > 150) {
-        logo.classList.add('show');
-      } else {
-        logo.classList.remove('show');
-      }
-    });
-    
     // Tab Switching Functionality
     function switchTab(tabName) {
       var contents = document.querySelectorAll('.content');
@@ -388,8 +407,8 @@
       document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
     }
     
-    // Optional Dark Mode Toggle
-    window.onload = function () {
+    // Dark Mode Toggle Functionality
+    window.addEventListener('DOMContentLoaded', function () {
       var toggleButton = document.getElementById("toggleMode");
       var body = document.body;
       var savedMode = localStorage.getItem("mode");
@@ -408,37 +427,34 @@
           toggleButton.textContent = "Bright Mode";
         }
       });
-    };
+    });
   </script>
 </head>
 <body>
-  <!-- Header with Background & Toggle -->
+  <!-- Header with Background Image & Navbar -->
   <div class="header">
-    <button id="toggleMode" class="toggle-mode">Dark Mode</button>
-    <h1>Welcome to aHPay</h1>
-  </div>
-  
-  <!-- Floating Logo -->
-  <img src="image.png" alt="ayushHardeniya Logo" class="logo">
-  
-  <!-- Main Container -->
-  <div class="container">
-    <div class="card">
-      <!-- Brand Section: Inline Logo and Title -->
+    <div class="navbar">
       <div class="brand">
         <img src="image.png" alt="aHPay Logo">
         <h2>aHPay</h2>
       </div>
-      <p class="subtitle" style="text-align: center; margin-bottom: 20px; color: var(--text-color);">
-        Powered By ayushHardeniya
-      </p>
-      
-      <!-- Description before Payment Options -->
-      <p class="description">
-        Choose the payment method that best suits your transaction. Please select one of the options below:
-        UPI, QR Code, or Bank Transfer for a secure and seamless payment experience.
-      </p>
-      
+      <button id="toggleMode" class="toggle-mode">Dark Mode</button>
+    </div>
+  </div>
+  
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Introduction Description -->
+    <p class="intro">
+      aHPay is a secure payment gateway dedicated to facilitating direct transactions for Ayush Hardeniya (Ayush Sharma). Our platform processes payments directly via UPI and bank transfers without any intermediaries, ensuring a seamless and professional experience.
+    </p>
+    
+    <!-- Instruction for Payment Methods -->
+    <p class="instruction">
+      Please select your preferred payment method to proceed.
+    </p>
+    
+    <div class="card">
       <!-- Tabs for Payment Methods -->
       <div class="tabs">
         <div class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</div>
@@ -449,9 +465,9 @@
       <!-- UPI Payment Section -->
       <div id="upi" class="content active">
         <h2>UPI Payment</h2>
-        <p>Click below to initiate a UPI transaction via your preferred UPI app.</p>
+        <p>Initiate a direct UPI transaction using your preferred UPI app.</p>
         <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
-        <p>You may also copy any of the UPI IDs listed to use in your payment app.</p>
+        <p>Or copy the UPI ID below:</p>
         <ul class="upi-list">
           <li>
             <span id="upi1">ayushhardeniya@oksbi</span>
@@ -487,8 +503,7 @@
       <!-- QR Code Payment Section -->
       <div id="qr" class="content">
         <h2>QR Code Payment</h2>
-        <p>Scan the QR code below using any UPI app to complete your payment swiftly.
-           You can also download the QR code image for later use.</p>
+        <p>Scan the QR code below using any UPI app to complete your payment.</p>
         <div class="qr-section">
           <img src="GooglePayQR.png" alt="Google Pay QR Code">
           <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
@@ -498,7 +513,7 @@
       <!-- Bank Transfer Section -->
       <div id="bank" class="content">
         <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-        <p>Use the following bank details to complete a direct bank transfer:</p>
+        <p>Use the following bank details for a direct bank transfer:</p>
         <div class="bank-details">
           <div class="detail">
             <span>Account Holder's Name:</span>
@@ -527,19 +542,19 @@
     <!-- Extra Interactive Section: Security & Features -->
     <div class="features">
       <h3>Secure & Reliable Payment Solutions</h3>
-      <p>Your security is our top priority. Experience seamless transactions backed by state-of-the-art encryption and trusted protocols.</p>
+      <p>Your security is our top priority. Experience seamless transactions backed by advanced encryption and trusted protocols.</p>
       <div class="feature-list">
         <div class="feature">
           <strong>100% Secure</strong>
-          <p>Your data is protected with advanced security measures.</p>
+          <p>Your data is protected by industry-standard security measures.</p>
         </div>
         <div class="feature">
           <strong>Instant Payments</strong>
-          <p>Enjoy quick and hassle-free transactions.</p>
+          <p>Direct, real-time processing for every transaction.</p>
         </div>
         <div class="feature">
-          <strong>Global Reach</strong>
-          <p>Trusted by users worldwide for secure payments.</p>
+          <strong>Direct Transfers</strong>
+          <p>Payments are processed directly via UPI and bank transfers – with no intermediaries.</p>
         </div>
       </div>
     </div>
