@@ -8,7 +8,6 @@ body {
     color: #333;
 }
 
-/* Header */
 .hero {
     position: relative;
     text-align: center;
@@ -31,7 +30,6 @@ body {
     font-weight: bold;
 }
 
-/* About Section */
 .about {
     padding: 30px;
     background: white;
@@ -58,7 +56,6 @@ body {
     color: gray;
 }
 
-/* Work & Blogs */
 .work {
     background: #333;
     color: white;
@@ -88,7 +85,6 @@ body {
     background: #0056b3;
 }
 
-/* Contact Section */
 .contact {
     padding: 30px;
     background: white;
@@ -98,7 +94,6 @@ body {
     font-size: 2rem;
 }
 
-/* Footer */
 footer {
     padding: 15px;
     background: #333;
