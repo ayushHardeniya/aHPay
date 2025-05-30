@@ -15,16 +15,15 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   
   <style>
-    /* CSS Variables – Professional Corporate Color Scheme */
     :root {
-      --primary-color: #1a73e8;      /* Corporate blue */
+      --primary-color: #1a73e8;      /* blue corporate*/
       --secondary-color: #4285f4;
       --bg-color: #f1f3f4;           /* Light neutral background */
-      --container-bg: #ffffff;       /* White for cards/sections */
-      --text-color: #202124;         /* Dark text on light background */
+      --container-bg: #ffffff;       /* white for cards/sections */
+      --text-color: #202124;         /* dark text on light background */
       --footer-bg: #ffffff;
       --footer-text: #5f6368;
-      --hover-primary: #1669c1;      /* Darker blue on hover */
+      --hover-primary: #1669c1;      /* darker blue on hover */
       --accent-color: #0f9d58;       /* Accent for interactive elements */
       --navbar-bg: rgba(0, 0, 0, 0.7); /* Opaque topbar background */
     }
@@ -44,7 +43,6 @@
       transition: background 0.3s, color 0.3s;
     }
     
-    /* Dark Mode Overrides */
     body.dark-mode {
       background: #121212;
       color: #e0e0e0;
@@ -103,7 +101,7 @@
       background: rgba(0, 0, 0, 0.4);
     }
     
-    /* Header Banner Image */
+    /* HeaderBanner Image */
     .header {
       width: 100%;
       height: 220px;
@@ -111,7 +109,6 @@
       background-size: cover;
     }
     
-    /* Introductory Description (Left Aligned) */
     .intro {
       text-align: left;
       margin: 30px 20px;
@@ -126,7 +123,6 @@
       font-weight: bold;
     }
     
-    /* Main Container & Cards */
     .container {
       max-width: 1200px;
       margin: 20px auto;
@@ -140,7 +136,6 @@
       margin-bottom: 20px;
     }
     
-    /* Payment Method Instruction (Concise, Left Aligned) */
     .instruction {
       text-align: left;
       margin: 10px 20px 20px;
@@ -148,7 +143,6 @@
       color: var(--text-color);
     }
     
-    /* Tabs Navigation for Payment Methods */
     .tabs {
       display: flex;
       justify-content: center;
@@ -207,7 +201,6 @@
       transform: scale(1.03);
     }
     
-    /* UPI List Styling */
     .upi-list {
       list-style: none;
       margin-top: 15px;
@@ -235,7 +228,7 @@
       background: var(--hover-primary);
     }
     
-    /* Bank Details Section (Slightly Larger Text) */
+  
     .bank-details {
       display: flex;
       flex-direction: column;
@@ -262,7 +255,6 @@
       color: var(--text-color);
     }
     
-    /* QR Code Section */
     .qr-section {
       text-align: center;
     }
@@ -286,7 +278,7 @@
       background: var(--hover-primary);
     }
     
-    /* Extra Section: Why Choose aHPay? */
+    /* Section - Why Choose aHPay? */
     .features {
       background: var(--container-bg);
       padding: 20px 30px;
@@ -332,13 +324,13 @@
       margin: 0 10px;
     }
     
-    /* Animations */
+    /* animations */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Responsive Adjustments */
+    /* responsive Adjustments */
     @media (max-width: 768px) {
       .topbar {
         flex-direction: column;
@@ -412,35 +404,27 @@
   </script>
 </head>
 <body>
-  <!-- Topbar with Dark Mode Toggle (Appears above the header image) -->
   <div class="topbar">
     <button id="toggleMode" class="toggle-mode">Dark Mode</button>
   </div>
-  
-  <!-- Header Banner Image -->
   <div class="header"></div>
   
-  <!-- Introductory Description (Left Aligned) -->
   <div class="intro">
     <p><strong>aHPay</strong> is your dedicated and secure payment portal for transactions directed to <strong>Ayush Hardeniya (Ayush Sharma)</strong>. We process payments directly via UPI and bank transfers with no intermediaries—ensuring a fast, safe, and transparent experience.</p>
   </div>
   
-  <!-- Main Container -->
   <div class="container">
-    <!-- Payment Method Instruction -->
     <div class="instruction">
       Please select your preferred payment method to proceed.
     </div>
     
     <div class="card">
-      <!-- Payment Method Tabs -->
       <div class="tabs">
         <div class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</div>
         <div class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code Payment</div>
         <div class="tab" data-tab="bank" onclick="switchTab('bank')">Bank Transfer</div>
       </div>
       
-      <!-- UPI Payment Section -->
       <div id="upi" class="content active">
         <h2>UPI Payment</h2>
         <p>Initiate a direct UPI transaction using your preferred UPI app.</p>
@@ -478,7 +462,6 @@
         </ul>
       </div>
       
-      <!-- QR Code Payment Section -->
       <div id="qr" class="content">
         <h2>QR Code Payment</h2>
         <p>Scan the QR code below using any UPI app to complete your payment.</p>
@@ -488,7 +471,6 @@
         </div>
       </div>
       
-      <!-- Bank Transfer Section -->
       <div id="bank" class="content">
         <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
         <p>Use the following bank details for a direct bank transfer:</p>
@@ -517,7 +499,6 @@
       </div>
     </div>
     
-    <!-- Extra Section: Why Choose aHPay? -->
     <div class="features">
       <h3>Why Choose aHPay?</h3>
       <p>At <strong>aHPay</strong>, your security and satisfaction are our top priorities. Experience seamless, direct transactions powered by advanced encryption and a commitment to transparency.</p>
