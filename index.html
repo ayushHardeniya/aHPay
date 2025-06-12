@@ -1,1 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aHPay - Ayush's Payment Gateway</title>
+    
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/png" sizes="16x16" href="aHPayfav-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="aHPayfav-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="aHPayfav-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="aHPayfav-512x512.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/aHPay-logo-rd.png" alt="aHPay Logo" class="main-logo">
+                <div class="brand-info">
+                    <h1 class="brand-name">aHPay</h1>
+                    <p class="brand-tagline">Personal Payment Gateway</p>
+                </div>
+            </div>
+            
+            <div class="profile-info">
+                <div class="profile-details">
+                    <h2 class="profile-name">Ayush Hardeniya</h2>
+                    <p class="profile-subtitle">Software Developer & Creator</p>
+                </div>
+                <img src="assets/signwhitetrans1.png" alt="Signature" class="signature-image">
+            </div>
+        </div>
+    </header>
 
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="banner-overlay">
+            <div class="hero-content">
+                <h2 class="hero-title">Send Money Securely</h2>
+                <p class="hero-description">Choose your preferred payment method for quick and secure transactions</p>
+            </div>
+        </div>
+        <img src="assets/aHPay-banner.png" alt="aHPay Banner" class="banner-bg">
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Payment Methods Section -->
+        <section class="payment-section">
+            <div class="container">
+                <h2 class="section-title">Payment Methods</h2>
+                <p class="section-description">Select your preferred way to send payment</p>
+                
+                <!-- Payment Method Cards -->
+                <div class="payment-methods-grid">
+                    <!-- UPI Payment Card -->
+                    <div class="payment-card upi-card">
+                        <div class="card-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="card-title">UPI Payment</h3>
+                        <p class="card-description">Pay instantly using your UPI app</p>
+                        <button class="primary-btn" onclick="showPaymentDetails('upi')">
+                            <i class="fas fa-arrow-right"></i>
+                            Pay with UPI
+                        </button>
+                    </div>
+
+                    <!-- QR Code Payment Card -->
+                    <div class="payment-card qr-card">
+                        <div class="card-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3 class="card-title">QR Code</h3>
+                        <p class="card-description">Scan QR code with any UPI app</p>
+                        <button class="primary-btn" onclick="showPaymentDetails('qr')">
+                            <i class="fas fa-camera"></i>
+                            Scan QR Code
+                        </button>
+                    </div>
+
+                    <!-- Bank Transfer Card -->
+                    <div class="payment-card bank-card">
+                        <div class="card-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="card-title">Bank Transfer</h3>
+                        <p class="card-description">Direct bank transfer via NEFT/IMPS</p>
+                        <button class="primary-btn" onclick="showPaymentDetails('bank')">
+                            <i class="fas fa-exchange-alt"></i>
+                            Bank Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Details Modal -->
+        <div id="payment-modal" class="payment-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Payment Details</h3>
+                    <button class="close-btn" onclick="closePaymentModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Payment Profiles Section -->
+        <section class="global-payment-section">
+            <div class="container">
+                <h2 class="section-title">International & Other Platforms</h2>
+                <p class="section-description">Support through various global platforms</p>
+                
+                <div class="global-payment-grid">
+                    <!-- Ko-fi -->
+                    <a href="https://ko-fi.com/ayushhardeniya" target="_blank" class="global-payment-item kofi">
+                        <div class="platform-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="platform-info">
+                            <h4>Ko-fi</h4>
+                            <p>Buy me a coffee</p>
+                        </div>
+                        <i class="fas fa-external-link-alt link-icon"></i>
+                    </a>
+
+                    <!-- PayPal -->
+                    <a href="https://paypal.me/ayushhardeniya" target="_blank" class="global-payment-item paypal">
+                        <div class="platform-icon">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                        <div class="platform-info">
+                            <h4>PayPal</h4>
+                            <p>Global payments</p>
+                        </div>
+                        <i class="fas fa-external-link-alt link-icon"></i>
+                    </a>
+
+                    <!-- GitHub Sponsors -->
+                    <a href="https://github.com/sponsors/ayushhardeniya" target="_blank" class="global-payment-item github">
+                        <div class="platform-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="platform-info">
+                            <h4>GitHub Sponsors</h4>
+                            <p>Sponsor my projects</p>
+                        </div>
+                        <i class="fas fa-external-link-alt link-icon"></i>
+                    </a>
+
+                    <!-- Buy Me a Coffee -->
+                    <a href="https://buymeacoffee.com/ayushhardeniya" target="_blank" class="global-payment-item buymeacoffee">
+                        <div class="platform-icon">
+                            <i class="fas fa-mug-hot"></i>
+                        </div>
+                        <div class="platform-info">
+                            <h4>Buy Me a Coffee</h4>
+                            <p>Support my work</p>
+                        </div>
+                        <i class="fas fa-external-link-alt link-icon"></i>
+                    </a>
+
+                    <!-- Patreon -->
+                    <a href="https://patreon.com/ayushhardeniya" target="_blank" class="global-payment-item patreon">
+                        <div class="platform-icon">
+                            <i class="fab fa-patreon"></i>
+                        </div>
+                        <div class="platform-info">
+                            <h4>Patreon</h4>
+                            <p>Monthly support</p>
+                        </div>
+                        <i class="fas fa-external-link-alt link-icon"></i>
+                    </a>
+
+                    <!-- Razorpay -->
+                    <a href="#" onclick="openRazorpay()" class="global-payment-item razorpay">
+                        <div class="platform-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="platform-info">
+                            <h4>Razorpay</h4>
+                            <p>Card payments</p>
+                        </div>
+                        <i class="fas fa-external-link-alt link-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Why Choose aHPay?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>100% Secure</h3>
+                        <p>Your transactions are protected with industry-standard security protocols</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Instant Processing</h3>
+                        <p>Real-time payment processing with immediate confirmation</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Transparent</h3>
+                        <p>No hidden fees, clear transaction history and receipts</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Personal Support</h3>
+                        <p>Direct communication for any payment-related queries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>aHPay</h3>
+                    <p>Personal Payment Gateway by Ayush Hardeniya</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="about.html">About</a>
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/ayushhardeniya" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/ayushhardeniya" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/ayushhardeniya" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 aHPay. All rights reserved. Made with ❤️ by Ayush Hardeniya</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="toast-notification">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
