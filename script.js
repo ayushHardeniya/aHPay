@@ -20,7 +20,7 @@ const config = {
         bankName: 'State Bank of India',
         branch: 'Main Branch, Gurugram'
     },
-    qrCodePath: 'GooglePayQR.png'
+    qrCodePath: 'assets/GooglePayQR.png'
 };
 
 // DOM Elements
