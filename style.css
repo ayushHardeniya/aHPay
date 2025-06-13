@@ -518,15 +518,6 @@ body {
 .github { border-left-color: #333; }
 .github .platform-icon { background: linear-gradient(135deg, #333, #555); }
 
-.buymeacoffee { border-left-color: #FFDD00; }
-.buymeacoffee .platform-icon { background: linear-gradient(135deg, #FFDD00, #FFE57F); color: #333; }
-
-.patreon { border-left-color: #FF424D; }
-.patreon .platform-icon { background: linear-gradient(135deg, #FF424D, #FF7074); }
-
-.razorpay { border-left-color: #3395FF; }
-.razorpay .platform-icon { background: linear-gradient(135deg, #3395FF, #66B2FF); }
-
 .platform-info h4 {
     font-size: 1.2rem;
     font-weight: 600;
