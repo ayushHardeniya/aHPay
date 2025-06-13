@@ -12,8 +12,6 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
 }
-
-/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -552,6 +550,7 @@ body {
     text-align: center;
     padding: 30px 20px;
     background: white;
+    color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
@@ -578,5 +577,5 @@ body {
 .feature-item h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: #ffffff;
     margin-bottom: 10px;
