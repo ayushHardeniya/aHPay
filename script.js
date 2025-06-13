@@ -12,11 +12,11 @@ const config = {
         'ayushhardeniya@ibl'
     ],
     bankDetails: {
-        accountName: 'Ayush Hardeniya',
-        accountNumber: '1234567890',
-        ifscCode: 'SBIN0001234',
-        bankName: 'State Bank of India',
-        branch: 'Main Branch, Gurugram'
+        accountName: '-',
+        accountNumber: '-',
+        ifscCode: '-',
+        bankName: '-',
+        branch: '-'
     },
     qrCodePath: 'assets/GooglePayQR.png'
 };
