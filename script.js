@@ -1,6 +1,4 @@
-// Payment Portal JavaScript
-// Author: Ayush Hardeniya
-// Version: 1.0
+// aHPay_version: 1.0
 
 // Global variables and configuration
 const config = {
