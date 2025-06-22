@@ -205,7 +205,7 @@ function generateQrContent() {
 }
 
 // Generate bank transfer content
-function generateBankContent() {
+/*function generateBankContent() {
     const { accountName, accountNumber, ifscCode, bankName, branch } = config.bankDetails;
     
     return `
@@ -264,7 +264,33 @@ function generateBankContent() {
             </div>
         </div>
     `;
+}*/
+
+function generateBankContent() {
+    return `
+        <div class="bank-details secure-message">
+            <p class="modal-description">
+                ⚠️ For security reasons, my bank transfer details are not shared publicly.
+            </p>
+            
+            <div class="secure-instruction">
+                <p>If you'd like to support me via <strong>NEFT / IMPS / RTGS</strong>, kindly send an email:</p>
+                <a href="mailto:connect@ayushhardeniya.in?subject=Requesting Bank Transfer Details&body=Hi Ayush, I’d like to support you via bank transfer. Please share the account details." class="email-request-link">
+                    📩 Request via Email
+                </a>
+                <p class="secure-note">
+                    I’ll reply personally with the details. Thanks for your support and understanding. 🙏
+                </p>
+            </div>
+
+            <div class="payment-note">
+                <i class="fas fa-lock"></i>
+                <p>Your trust and privacy matter. This step helps prevent misuse of payment data.</p>
+            </div>
+        </div>
+    `;
 }
+
 
 // Close payment modal
 function closePaymentModal() {
