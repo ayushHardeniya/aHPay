@@ -467,6 +467,40 @@ body {
     font-weight: 500;
 }
 
+/*Styles for disclaimer in bank transfer modal &*/
+
+.secure-message {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background-color: #fefefe;
+    color: #333;
+}
+
+.secure-instruction p {
+    margin-bottom: 10px;
+}
+
+.email-request-link {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.email-request-link:hover {
+    background-color: #0056b3;
+}
+
+.payment-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
 /* Global Payment Platforms */
 .global-payment-grid {
     display: grid;
