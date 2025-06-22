@@ -275,7 +275,7 @@ function generateBankContent() {
             
             <div class="secure-instruction">
                 <p>If you'd like to support me via <strong>NEFT / IMPS / RTGS</strong>, kindly send an email:</p>
-                <a href="mailto:connect@ayushhardeniya.in?subject=Requesting Bank Transfer Details&body=Hi Ayush, I’d like to support you via bank transfer. Please share the account details." class="email-request-link">
+                <a href="mailto:ayushhardeniya@proton.me?subject=Requesting Bank Transfer Details&body=Hi Ayush, I’d [ _Your_Name_ ] like to support you via bank transfer. Please share the account details." class="email-request-link">
                     📩 Request via Email
                 </a>
                 <p class="secure-note">
