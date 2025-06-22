@@ -18,7 +18,7 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
+/* Heade */
 .main-header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -94,7 +94,7 @@ body {
     opacity: 0.8;
 }
 
-/* Hero Banner */
+/* Hero section */
 .hero-banner {
     position: relative;
     height: 300px;
@@ -146,7 +146,6 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Main Content */
 .main-content {
     background: white;
     margin-top: -50px;
@@ -178,7 +177,7 @@ body {
     margin-bottom: 50px;
 }
 
-/* Payment Methods Grid */
+/* Payment Methods styles */
 .payment-methods-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -285,55 +284,6 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    animation: slideIn 0.3s ease;
-}
-
-.modal-header {
-    padding: 30px 30px 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-header h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #7f8c8d;
-    padding: 5px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-    background: #f8f9fa;
-    color: #e74c3c;
-}
-
-.modal-body {
-    padding: 30px;
-}
-
 /* UPI Details */
 .upi-details {
     text-align: center;
@@ -392,7 +342,7 @@ body {
     background: #5a67d8;
 }
 
-/* QR Code Details */
+/* QR- details */
 .qr-details {
     text-align: center;
 }
