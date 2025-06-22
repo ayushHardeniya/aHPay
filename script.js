@@ -210,7 +210,7 @@ function generateQrContent() {
     
     return `
         <div class="bank-details">
-            <p class="modal-description">Use these details for NEFT/IMPS/RTGS transfers:</p>
+            <p class="modal-description">For NEFT/IMPS/RTGS transfers, follow the information:</p>
             
             <div class="bank-info">
                 <div class="bank-field">
