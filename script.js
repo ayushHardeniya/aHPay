@@ -176,6 +176,16 @@ function generateUpiContent() {
     return content;
 }
 
+// Fix for copy functionality
+function copyUpiId(actualUpiId, index) {
+    navigator.clipboard.writeText(actualUpiId).then(() => {
+        alert(`✅ Copied: ${actualUpiId}`);
+    }).catch(err => {
+        alert("❌ Failed to copy UPI ID. Please copy manually.");
+        console.error("Copy failed:", err);
+    });
+}
+
 // Generate QR content
 function generateQrContent() {
     return `
