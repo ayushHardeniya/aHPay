@@ -316,7 +316,7 @@ function closePaymentModal() {
 }
 
 // Copy UPI ID to clipboard
-function copyUpiId(upiId, index) {
+/*function copyUpiId(upiId, index) {
     copyToClipboard(upiId)
         .then(() => {
             showToast(`UPI ID copied: ${upiId}`, 'success');
@@ -335,29 +335,6 @@ function copyUpiId(upiId, index) {
         .catch(err => {
             console.error('Copy failed:', err);
             showToast('Failed to copy UPI ID', 'error');
-        });
-}
-
-// Copy bank detail to clipboard
-/*function copyBankDetail(detail, fieldName) {
-    copyToClipboard(detail)
-        .then(() => {
-            showToast(`${fieldName} copied successfully`, 'success');
-            
-            // Visual feedback
-            const copyBtn = event.target.closest('.copy-btn-small');
-            const originalHtml = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-            copyBtn.style.background = '#2ecc71';
-            
-            setTimeout(() => {
-                copyBtn.innerHTML = originalHtml;
-                copyBtn.style.background = '';
-            }, 1500);
-        })
-        .catch(err => {
-            console.error('Copy failed:', err);
-            showToast('Failed to copy details', 'error');
         });
 }
 */
@@ -388,6 +365,29 @@ function copyUpiId(upiId, index) {
         });
 }
 
+// Copy bank detail to clipboard
+/*function copyBankDetail(detail, fieldName) {
+    copyToClipboard(detail)
+        .then(() => {
+            showToast(`${fieldName} copied successfully`, 'success');
+            
+            // Visual feedback
+            const copyBtn = event.target.closest('.copy-btn-small');
+            const originalHtml = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            copyBtn.style.background = '#2ecc71';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalHtml;
+                copyBtn.style.background = '';
+            }, 1500);
+        })
+        .catch(err => {
+            console.error('Copy failed:', err);
+            showToast('Failed to copy details', 'error');
+        });
+}
+*/
 
 // Generic copy to clipboard function
 async function copyToClipboard(text) {
