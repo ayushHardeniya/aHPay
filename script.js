@@ -339,7 +339,7 @@ function copyUpiId(upiId, index) {
 }
 
 // Copy bank detail to clipboard
-function copyBankDetail(detail, fieldName) {
+/*function copyBankDetail(detail, fieldName) {
     copyToClipboard(detail)
         .then(() => {
             showToast(`${fieldName} copied successfully`, 'success');
@@ -360,6 +360,34 @@ function copyBankDetail(detail, fieldName) {
             showToast('Failed to copy details', 'error');
         });
 }
+*/
+
+// Copy UPI ID to clipboard
+function copyUpiId(upiId, index) {
+    copyToClipboard(upiId)
+        .then(() => {
+            // Professional and clear toast message
+            showToast(`✅ UPI ID "${upiId}" copied to clipboard.`, 'success');
+
+            // Visual feedback on the copy button
+            const copyBtn = event.target.closest('.copy-btn');
+            if (copyBtn) {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                copyBtn.classList.add('copy-success');
+
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.classList.remove('copy-success');
+                }, 2000);
+            }
+        })
+        .catch(err => {
+            console.error('❌ Copy failed:', err);
+            showToast('⚠️ Unable to copy UPI ID. Please copy manually.', 'error');
+        });
+}
+
 
 // Generic copy to clipboard function
 async function copyToClipboard(text) {
