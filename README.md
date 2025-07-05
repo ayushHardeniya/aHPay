@@ -53,24 +53,10 @@ _aHPay_ is a secure and unified payment portal designed specifically for receivi
 | 🏦 **Bank** | Use account details | Traditional banking users |
 | 🌐 **Ko-fi/PayPal** | Click external links | International supporters |
 
-## ⚙️ Customization
-
-**Quick Config:**
-- Edit `script.js` → Update payment IDs and details
-- Modify `style.css` → Change colors and styling
-
 ## 🌐 Browser Support
 
 - ✅ Chrome, Firefox, Safari, Edge
 - ✅ Mobile browsers
-
-## 🤝 Contributing
-
-1. Fork
-2. Branch (`git checkout -b feature/amazing-feature`)
-3. Commit (`git commit -m 'Add feature'`)
-4. Push (`git push origin feature/amazing-feature`)
-5. Open PR
 
 ## 📞 Contact
 
