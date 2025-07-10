@@ -719,6 +719,14 @@ body {
     display: flex;
     gap: 20px;
     align-items: flex-start;
+    flex-direction: row; /* default*/
+}
+
+@media (max-width: 768px) {
+    .footer-social {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .footer-social a {
