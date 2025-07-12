@@ -610,7 +610,7 @@ body {
 .feature-item h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #ffffff;
+    color: linear-gradient(135deg, #667eea, #764ba2);
     margin-bottom: 10px;
 }
 
